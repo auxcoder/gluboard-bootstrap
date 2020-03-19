@@ -25,6 +25,10 @@
     "type": "git",
     "url": "https://github.com/auxcoder/gluboard.git"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "5.10.2",
+    "bootstrap": "4.3.1",
+  },
+  "devDependencies": {
+  }
 }
