@@ -1,0 +1,30 @@
+{
+  "title": "GluBoard",
+  "name": "bootstrap-gluboard",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node_modules/.bin/gulp default"
+  },
+  "description": "A Bootstrap 4 theme",
+  "keywords": [
+    "css",
+    "sass",
+    "html",
+    "responsive",
+    "theme",
+    "admin",
+    "app"
+  ],
+  "homepage": "https://gluboard.auxcoder.com/gluboard",
+  "license": "MIT",
+  "author": "Auxcoder",
+  "contributors": [
+    "Auxcoder (http://auxcoder.com/)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/auxcoder/gluboard.git"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
