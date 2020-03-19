@@ -3,3 +3,8 @@
 
 // Import Bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "utilities.scss";
+
+// Custom Components
+@import "dropdowns.scss";
+@import "navs.scss";
