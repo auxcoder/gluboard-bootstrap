@@ -2,3 +2,5 @@ node_modules
 dist
 __copy
 vendor
+css
+js
