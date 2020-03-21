@@ -123,10 +123,7 @@ function css() {
 // JS task
 function js() {
   return gulp
-    .src([
-      './scripts/*.js',
-      '!./scripts/*.min.js',
-    ])
+    .src([ './scripts/*.js'])
     .pipe(header(banner, {
       pkg: pkg
     }))
