@@ -46,4 +46,12 @@
     e.preventDefault();
   });
 
+  // load samples dataset
+  $(document).ready(function() {
+    $.getJSON( "codes.json", function( data ) {
+      window.sampleCodes = data;
+    });
+    $.getJSON( "data-01.json", function( data ) {
+    });
+  });
 })(jQuery); // End of use strict
