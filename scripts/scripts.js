@@ -52,6 +52,33 @@
       window.sampleCodes = data;
     });
     $.getJSON( "data-01.json", function( data ) {
+      window.samplesData = data;
+      setLastSample(data);
     });
   });
+
+  function getAverage(values) {
+    var totalSum = 0;
+    for (var i in values) {
+      totalSum += Number(values[i]);
+    }
+    return Math.round(totalSum / values.length);
+  }
+
+  function lastDayOfSample(dataSet) {
+    var dateToCompare = new Date();
+    var samples = dataSet.map(function(sample) {
+      return new Date(sample.date);
+    });
+    return window.dateFns.closestTo(dateToCompare, samples);
+  }
+
+  function setLastSample(dataSet) {
+    var closestDateOfSample = lastDayOfSample(dataSet);
+    var closestSamples = getSamplesByDate(dataSet, closestDateOfSample)
+      .filter(function(sample) {
+        return sample.code === 58
+      });
+    $("#lastSample .value").html(closestSamples[0].value);
+  }
 })(jQuery); // End of use strict
