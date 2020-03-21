@@ -1,41 +1,16 @@
+var MONTHS_LONG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var MONTHS_CHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-function number_format(number, decimals, dec_point, thousands_sep) {
-  // *     example: number_format(1234.56, 2, ',', ' ');
-  // *     return: '1 234,56'
-  number = (number + '').replace(',', '').replace(' ', '');
-  var n = !isFinite(+number) ? 0 : +number,
-    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-    s = '',
-    toFixedFix = function(n, prec) {
-      var k = Math.pow(10, prec);
-      return '' + Math.round(n * k) / k;
-    };
-  // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-  if (s[0].length > 3) {
-    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-  }
-  if ((s[1] || '').length < prec) {
-    s[1] = s[1] || '';
-    s[1] += new Array(prec - s[1].length + 1).join('0');
-  }
-  return s.join(dec);
-}
-
-// Area Chart Example
-var ctx = document.getElementById("areaChart");
-var myLineChart = new Chart(ctx, {
+var chartAreaConfig = {
   type: 'line',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: [],
     datasets: [{
-      label: "Earnings",
-      lineTension: 0.3,
+      label: "Sample Value",
+      lineTension: 0,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
       pointRadius: 3,
@@ -45,8 +20,8 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
-      pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+      pointBorderWidth: 5,
+      data: [],
     }],
   },
   options: {
@@ -54,8 +29,8 @@ var myLineChart = new Chart(ctx, {
     layout: {
       padding: {
         left: 10,
-        right: 25,
-        top: 25,
+        right: 15,
+        top: 15,
         bottom: 0
       }
     },
@@ -66,25 +41,24 @@ var myLineChart = new Chart(ctx, {
         },
         gridLines: {
           display: false,
-          drawBorder: false
+          // drawBorder: false
         },
-        ticks: {
-          maxTicksLimit: 7
-        }
+        // ticks: {
+        //   maxTicksLimit: 11
+        // }
       }],
       yAxes: [{
         ticks: {
-          maxTicksLimit: 5,
+          maxTicksLimit: 10,
           padding: 10,
-          // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return  (index === values.length - 1  ? 'mg/dL ' : '') + value;
           }
         },
         gridLines: {
           color: "rgb(234, 236, 244)",
           zeroLineColor: "rgb(234, 236, 244)",
-          drawBorder: false,
+          // drawBorder: false,
           borderDash: [2],
           zeroLineBorderDash: [2]
         }
@@ -108,11 +82,39 @@ var myLineChart = new Chart(ctx, {
       mode: 'index',
       caretPadding: 10,
       callbacks: {
-        label: function(tooltipItem, chart) {
-          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+        label: function(tooltipItem) {
+          // https://www.chartjs.org/docs/latest/configuration/tooltip.html#tooltip-item-interface
+          return  window.dateFns.format(new Date(tooltipItem.label), 'MMM d, yyyy');
+        },
+        title: function(tooltipItems) {
+          return  tooltipItems[0].yLabel + ' mg/dL';
         }
       }
     }
   }
-});
+};
+
+function initChart() {
+  var timeoutID;
+  var ctx = document.getElementById("chartLine");
+  var targetcode = 58;
+  if (window.hasOwnProperty('samplesData')) {
+    window.clearTimeout(timeoutID);
+    var dataset = window.samplesData
+      .filter(sample => sample.code == targetcode)
+      .slice(0, 30);
+    chartAreaConfig.data.labels = dataset.map(item => window.dateFns.format(new Date(item.date), 'MMM d'));
+    chartAreaConfig.data.datasets[0].data = dataset.map(item => item.value);
+
+    new Chart(ctx, chartAreaConfig);
+  } else {
+    timeoutID = setTimeout(function() {
+      initChart();
+    }, 1000);
+  }
+}
+
+// Area Chart Example
+window.onload = function() {
+  initChart();
+};
