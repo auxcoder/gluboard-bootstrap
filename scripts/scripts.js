@@ -55,6 +55,7 @@
       window.samplesData = data;
       setLastSample(data);
       setLastThreeSamplesAverage(data);
+      setLastSevenSamplesAverage(data);
     });
   });
 
@@ -72,6 +73,18 @@
       return new Date(sample.date);
     });
     return window.dateFns.closestTo(dateToCompare, samples);
+  }
+
+  function getSamplesByDate(dataSet, startDate, endDate) {
+    if (endDate) {
+      return dataSet.filter(function(sample) {
+        var _date = new Date(sample.date)
+        return  window.dateFns.isAfter(_date, startDate) && window.dateFns.isBefore(_date, endDate);
+      });
+    }
+    return dataSet.filter(function(sample) {
+      return  window.dateFns.isSameDay(new Date(sample.date), startDate)
+    })
   }
 
   function setLastSample(dataSet) {
@@ -95,6 +108,20 @@
       });
     var lastThreeAverage = getAverage(closestSamples.map(function(sample) {return sample.value}));
     $("#lastThreeAve .value").html(lastThreeAverage);
+  }
+
+  function setLastSevenSamplesAverage(dataSet) {
+    var closestDateOfSample = lastDayOfSample(dataSet);
+    var closestSamples = getSamplesByDate(
+        dataSet,
+        window.dateFns.subDays(closestDateOfSample, 7),
+        closestDateOfSample
+      )
+      .filter(function(sample) {
+        return sample.code === 58
+      });
+    var lastThreeAverage = getAverage(closestSamples.map(function(sample) {return sample.value}));
+    $("#lastSevenAve .value").html(lastThreeAverage);
   }
 
 })(jQuery); // End of use strict
