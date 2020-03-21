@@ -56,6 +56,7 @@
       setLastSample(data);
       setLastThreeSamplesAverage(data);
       setLastSevenSamplesAverage(data);
+      setLastMonthSamplesAverage(data);
     });
   });
 
@@ -124,4 +125,18 @@
     $("#lastSevenAve .value").html(lastThreeAverage);
   }
 
+  function setLastMonthSamplesAverage(dataSet) {
+    var closestDateOfSample = lastDayOfSample(dataSet);
+
+    var closestSamples = getSamplesByDate(
+      dataSet,
+      window.dateFns.subDays(closestDateOfSample, 30),
+      closestDateOfSample
+    )
+    .filter(function(sample) {
+      return sample.code === 58
+    });
+    var lastMonthAverage = getAverage(closestSamples.map(function(sample) {return sample.value}))
+    $("#lastMonthAve .value").html(lastMonthAverage);
+  }
 })(jQuery); // End of use strict
