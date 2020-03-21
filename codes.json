@@ -1,0 +1,82 @@
+[
+  {
+    "code": "33",
+    "description": "Regular insulin dose"
+  },
+  {
+    "code": "34",
+    "description": "NPH insulin dose"
+  },
+  {
+    "code": "35",
+    "description": "UltraLente insulin dose"
+  },
+  {
+    "code": "48",
+    "description": "Unspecified blood glucose measurement"
+  },
+  {
+    "code": "57",
+    "description": "Unspecified blood glucose measurement"
+  },
+  {
+    "code": "58",
+    "description": "Pre-breakfast blood glucose measurement"
+  },
+  {
+    "code": "59",
+    "description": "Post-breakfast blood glucose measurement"
+  },
+  {
+    "code": "60",
+    "description": "Pre-lunch blood glucose measurement"
+  },
+  {
+    "code": "61",
+    "description": "Post-lunch blood glucose measurement"
+  },
+  {
+    "code": "62",
+    "description": "Pre-supper blood glucose measurement"
+  },
+  {
+    "code": "63",
+    "description": "Post-supper blood glucose measurement"
+  },
+  {
+    "code": "64",
+    "description": "Pre-snack blood glucose measurement"
+  },
+  {
+    "code": "65",
+    "description": "Hypoglycemic symptoms"
+  },
+  {
+    "code": "66",
+    "description": "Typical meal ingestion"
+  },
+  {
+    "code": "67",
+    "description": "More-than-usual meal ingestion"
+  },
+  {
+    "code": "68",
+    "description": "Less-than-usual meal ingestion"
+  },
+  {
+    "code": "69",
+    "description": "Typical exercise activity"
+  },
+  {
+    "code": "70",
+    "description": "More-than-usual exercise activity"
+  },
+  {
+    "code": "71",
+    "description": "Less-than-usual exercise activity"
+  },
+  {
+    "code": "72",
+    "description": "Unspecified special event"
+  }
+]
