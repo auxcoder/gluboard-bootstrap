@@ -1,10 +1,12 @@
 # [GluBoard](https://gluboard.auxcoder.com/gluboard)
 
-## Preview
+A simple Dashboard for blood samples and Glucose values.
 
 ## Usage
 
 After installation, run `npm install` and then run `npm start` which will open up a preview of the template in your default browser, watch for changes to core template files, and live reload the browser when changes are saved. You can view the `gulpfile.js` to see which tasks are included with the dev environment.
+
+---
 
 ### Gulp Tasks
 
@@ -13,6 +15,14 @@ After installation, run `npm install` and then run `npm start` which will open u
 - `gulp css` compiles SCSS files into CSS and minifies the compiled CSS
 - `gulp js` minifies the themes JS file
 - `gulp vendor` copies dependencies from node_modules to the vendor directory
+
+---
+
+## Todo
+
+- [Units converter](https://www.diabetes.co.uk/blood-sugar-converter.html)
+
+---
 
 ## Dataset
 
@@ -43,9 +53,13 @@ After installation, run `npm install` and then run `npm start` which will open u
 
 \*Neutral Protamine Hagedorn, intermediate acting insulins are often taken in conjunction with a short acting insulin. Intermediate acting insulins start to act within the first hour of injecting, followed by a period of peak activity lasting up to 7 hours.
 
+---
+
 ## Copyright and License
 
 Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-resume/blob/gh-pages/LICENSE) license.
+
+---
 
 ## Refs
 

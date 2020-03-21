@@ -4,7 +4,7 @@ var MONTHS_CHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-var chartAreaConfig = {
+var chartLineConfig = {
   type: 'line',
   data: {
     labels: [],
@@ -94,27 +94,27 @@ var chartAreaConfig = {
   }
 };
 
-function initChart() {
-  var timeoutID;
-  var ctx = document.getElementById("chartLine");
+function updateLineConfigData(data) {
   var targetcode = 58;
-  if (window.hasOwnProperty('samplesData')) {
-    window.clearTimeout(timeoutID);
-    var dataset = window.samplesData
-      .filter(sample => sample.code == targetcode)
-      .slice(0, 30);
-    chartAreaConfig.data.labels = dataset.map(item => window.dateFns.format(new Date(item.date), 'MMM d'));
-    chartAreaConfig.data.datasets[0].data = dataset.map(item => item.value);
-
-    new Chart(ctx, chartAreaConfig);
-  } else {
-    timeoutID = setTimeout(function() {
-      initChart();
-    }, 1000);
-  }
+  var dataset = data.filter(sample => sample.code == targetcode).slice(0, 30);
+  chartLineConfig.data.labels = dataset.map(item => window.dateFns.format(new Date(item.date), 'MMM d'));
+  chartLineConfig.data.datasets[0].data = dataset.map(item => item.value);
+  return chartLineConfig
 }
 
-// Area Chart Example
-window.onload = function() {
-  initChart();
-};
+// Line Chart
+var chartLine;
+window.addEventListener('load', (event) => {
+  console.log('page is fully loaded');
+  var timeoutID;
+  var sampleData = new Promise((resolve) => {
+    timeoutID = setTimeout(() => {
+      if (window.hasOwnProperty('samplesData')) resolve(window.samplesData);
+    }, 1000);
+  });
+  sampleData.then((data) => {
+    window.clearTimeout(timeoutID);
+    var ctx = document.getElementById("chartLine");
+    chartLine = new Chart(ctx, updateLineConfigData(data));
+  });
+});
