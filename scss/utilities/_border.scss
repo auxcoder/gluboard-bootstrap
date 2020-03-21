@@ -1,0 +1,8 @@
+@each $color, $value in $theme-colors {
+  $positions: 'left', 'bottom';
+  @each $position in $positions {
+    .border-#{$position}-#{$color} {
+      border-#{$position}: .25rem solid $value !important;
+    }
+  }
+}
