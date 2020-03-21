@@ -54,6 +54,7 @@
     $.getJSON( "data-01.json", function( data ) {
       window.samplesData = data;
       setLastSample(data);
+      setLastThreeSamplesAverage(data);
     });
   });
 
@@ -81,4 +82,19 @@
       });
     $("#lastSample .value").html(closestSamples[0].value);
   }
+
+  function setLastThreeSamplesAverage(dataSet) {
+    var closestDateOfSample = lastDayOfSample(dataSet);
+    var closestSamples = getSamplesByDate(
+        dataSet,
+        window.dateFns.subDays(closestDateOfSample, 3),
+        closestDateOfSample
+      )
+      .filter(function(sample) {
+        return sample.code === 58
+      });
+    var lastThreeAverage = getAverage(closestSamples.map(function(sample) {return sample.value}));
+    $("#lastThreeAve .value").html(lastThreeAverage);
+  }
+
 })(jQuery); // End of use strict
