@@ -95,8 +95,7 @@ var chartLineConfig = {
 };
 
 function updateData(data, start, end) {
-  var targetcode = 58;
-  var dataset = data.filter(sample => sample.code == targetcode)
+  var dataset = data;
   if (start) dataset = dataset.filter(sample => window.dateFns.isAfter(new Date(sample.date), new Date(start)));
   if (end) dataset = dataset.filter(sample => window.dateFns.isBefore(new Date(sample.date), new Date(end)));
   if (!start && !end) dataset = dataset.slice(0, 30);
@@ -116,16 +115,17 @@ function updateLineConfigData(data, start, end) {
   "use strict";
 
   // Line Chart
+  var targetcode = 58;
   var chartLine;
   window.addEventListener('load', (event) => {
-    var timeoutID;
+    var toID;
     var sampleData = new Promise((resolve) => {
-      timeoutID = setTimeout(() => {
-        if (window.hasOwnProperty('samplesData')) resolve(window.samplesData);
+      toID = setTimeout(() => {
+        if (window.hasOwnProperty('samplesData')) resolve(window.samplesData.filter(sample => sample.code == targetcode));
       }, 1000);
     });
     sampleData.then((data) => {
-      window.clearTimeout(timeoutID);
+      window.clearTimeout(toID);
       var ctx = document.getElementById("chartLine");
       chartLine = new Chart(ctx, updateLineConfigData(data));
     });
@@ -133,18 +133,37 @@ function updateLineConfigData(data, start, end) {
 
   $(document).ready(function() {
     document.addEventListener('update-data', function(event) {
+      var data = window.samplesData.filter(sample => sample.code == targetcode);
       var toDate = window.lastDayOfSample(window.samplesData);
+      var dataset;
       switch (event.detail.name) {
         case 'lastMonth':
           var fromDate = window.dateFns.subMonths(toDate, 1);
-          chartLine.data.datasets[0].data = updateData(window.samplesData, fromDate, toDate).map(item => item.value);
+          dataset = updateData(data, fromDate, toDate);
+          chartLine.data.datasets[0].data = dataset.map(item => item.value);
+          chartLine.data.labels = dataset.map(item => window.dateFns.format(new Date(item.date), 'MMM d'));
           chartLine.update();
           break;
         case 'lastTwoMonths':
+          var fromDate = window.dateFns.subMonths(toDate, 2);
+          dataset = updateData(data, fromDate, toDate);
+          chartLine.data.datasets[0].data = dataset.map(item => item.value);
+          chartLine.data.labels = dataset.map(item => window.dateFns.format(new Date(item.date), 'MMM d'));
+          chartLine.update();
           break;
         case 'lastThreeMonths':
+          var fromDate = window.dateFns.subMonths(toDate, 3);
+          dataset = updateData(data, fromDate, toDate);
+          chartLine.data.datasets[0].data = dataset.map(item => item.value);
+          chartLine.data.labels = dataset.map(item => window.dateFns.format(new Date(item.date), 'MMM d'));
+          chartLine.update();
           break;
         case 'lastSixMonths':
+          var fromDate = window.dateFns.subMonths(toDate, 6);
+          dataset = updateData(data, fromDate, toDate);
+          chartLine.data.datasets[0].data = dataset.map(item => item.value);
+          chartLine.data.labels = dataset.map(item => window.dateFns.format(new Date(item.date), 'MMM d'));
+          chartLine.update();
           break;
         default:
           break;
