@@ -14,7 +14,7 @@
   height: 10rem;
   width: 100%;
   @include media-breakpoint-up(md) {
-    height: 20rem;
+    height: calc(20rem - 62px);
   }
 }
 

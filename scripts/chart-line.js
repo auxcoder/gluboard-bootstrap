@@ -94,27 +94,82 @@ var chartLineConfig = {
   }
 };
 
-function updateLineConfigData(data) {
-  var targetcode = 58;
-  var dataset = data.filter(sample => sample.code == targetcode).slice(0, 30);
+function updateData(data, start, end) {
+  var dataset = data;
+  if (start) dataset = dataset.filter(sample => window.dateFns.isAfter(new Date(sample.date), new Date(start)));
+  if (end) dataset = dataset.filter(sample => window.dateFns.isBefore(new Date(sample.date), new Date(end)));
+  if (!start && !end) dataset = dataset.slice(0, 30);
+  return dataset
+}
+
+function updateLineConfigData(data, start, end) {
+  var dataset = updateData(data, start, end)
   chartLineConfig.data.labels = dataset.map(item => window.dateFns.format(new Date(item.date), 'MMM d'));
   chartLineConfig.data.datasets[0].data = dataset.map(item => item.value);
   return chartLineConfig
 }
 
-// Line Chart
-var chartLine;
-window.addEventListener('load', (event) => {
-  console.log('page is fully loaded');
-  var timeoutID;
-  var sampleData = new Promise((resolve) => {
-    timeoutID = setTimeout(() => {
-      if (window.hasOwnProperty('samplesData')) resolve(window.samplesData);
-    }, 1000);
+
+(function($) {
+  // Start of use strict
+  "use strict";
+
+  // Line Chart
+  var targetcode = 58;
+  var chartLine;
+  window.addEventListener('load', (event) => {
+    var toID;
+    var sampleData = new Promise((resolve) => {
+      toID = setTimeout(() => {
+        if (window.hasOwnProperty('samplesData')) resolve(window.samplesData.filter(sample => sample.code == targetcode));
+      }, 1000);
+    });
+    sampleData.then((data) => {
+      window.clearTimeout(toID);
+      var ctx = document.getElementById("chartLine");
+      chartLine = new Chart(ctx, updateLineConfigData(data));
+    });
   });
-  sampleData.then((data) => {
-    window.clearTimeout(timeoutID);
-    var ctx = document.getElementById("chartLine");
-    chartLine = new Chart(ctx, updateLineConfigData(data));
+
+  $(document).ready(function() {
+    document.addEventListener('update-data', function(event) {
+      var data = window.samplesData.filter(sample => sample.code == targetcode);
+      var toDate = window.lastDayOfSample(window.samplesData);
+      var dataset;
+      switch (event.detail.name) {
+        case 'lastMonth':
+          var fromDate = window.dateFns.subMonths(toDate, 1);
+          dataset = updateData(data, fromDate, toDate);
+          chartLine.data.datasets[0].data = dataset.map(item => item.value);
+          chartLine.data.labels = dataset.map(item => window.dateFns.format(new Date(item.date), 'MMM d'));
+          chartLine.update();
+          break;
+        case 'lastTwoMonths':
+          var fromDate = window.dateFns.subMonths(toDate, 2);
+          dataset = updateData(data, fromDate, toDate);
+          chartLine.data.datasets[0].data = dataset.map(item => item.value);
+          chartLine.data.labels = dataset.map(item => window.dateFns.format(new Date(item.date), 'MMM d'));
+          chartLine.update();
+          break;
+        case 'lastThreeMonths':
+          var fromDate = window.dateFns.subMonths(toDate, 3);
+          dataset = updateData(data, fromDate, toDate);
+          chartLine.data.datasets[0].data = dataset.map(item => item.value);
+          chartLine.data.labels = dataset.map(item => window.dateFns.format(new Date(item.date), 'MMM d'));
+          chartLine.update();
+          break;
+        case 'lastSixMonths':
+          var fromDate = window.dateFns.subMonths(toDate, 6);
+          dataset = updateData(data, fromDate, toDate);
+          chartLine.data.datasets[0].data = dataset.map(item => item.value);
+          chartLine.data.labels = dataset.map(item => window.dateFns.format(new Date(item.date), 'MMM d'));
+          chartLine.update();
+          break;
+        default:
+          break;
+      }
+
+      chartLine
+    });
   });
-});
+})(jQuery); // End of use strict
