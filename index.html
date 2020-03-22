@@ -21,6 +21,11 @@
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <!-- endbuild -->
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
 </head>
 
 <body id="page-top">
@@ -41,13 +46,6 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <!-- <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li> -->
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -106,8 +104,6 @@
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
-
             <div class="topbar-divider d-none d-sm-block"></div>
 
 
@@ -126,17 +122,18 @@
                 class="fas fa-print fa-sm text-white-50"></i> Print</a>
           </div>
 
+          <!-- Last Days Samples -->
           <!-- Content Row -->
           <div class="row">
 
             <!-- Last sample -->
-            <div class="col-xl-3 col-md-3 mb-4">
-              <div class="card border-bottom-primary shadow h-100 py-2">
+            <div class="col-6 col-xl-3 col-md-3 mb-4">
+              <div class="card border-bottom-primary shadow h-100" id="lastSample">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Last sample</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">125</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Last Day</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 value">125</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-tint fa-2x text-gray-300"></i>
@@ -147,13 +144,13 @@
             </div>
 
             <!-- last 3 days -->
-            <div class="col-xl-3 col-md-3 mb-4">
-              <div class="card border-bottom-success shadow h-100 py-2">
+            <div class="col-6 col-xl-3 col-md-3 mb-4">
+              <div class="card border-bottom-success shadow h-100" id="lastThreeAve">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Last Three</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">115</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 value">115</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-tint fa-2x text-gray-300"></i>
@@ -164,23 +161,13 @@
             </div>
 
             <!-- last seven days -->
-            <div class="col-xl-3 col-md-3 mb-4">
-              <div class="card border-bottom-info shadow h-100 py-2">
+            <div class="col-6 col-xl-3 col-md-3 mb-4">
+              <div class="card border-bottom-info shadow h-100" id="lastSevenAve">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Last Seven</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">127</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 value">127</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-tint fa-2x text-gray-300"></i>
@@ -191,13 +178,13 @@
             </div>
 
             <!-- Last month -->
-            <div class="col-xl-3 col-md-3 mb-4">
-              <div class="card border-bottom-danger shadow h-100 py-2">
+            <div class="col-6 col-xl-3 col-md-3 mb-4">
+              <div class="card border-bottom-danger shadow h-100" id="lastMonthAve">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Last Month</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">120</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 value">120</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-tint fa-2x text-gray-300"></i>
@@ -208,12 +195,12 @@
             </div>
           </div>
 
+          <!-- Line Charts -->
           <!-- Content Row -->
-
           <div class="row">
 
             <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
+            <div class="col">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -235,19 +222,25 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="areaChart"></canvas>
+                  <div class="chart-line">
+                    <canvas id="chartLine"></canvas>
                   </div>
                 </div>
               </div>
             </div>
 
+          </div>
+
+          <!-- Progress Chart -->
+          <!-- Content Row -->
+          <div class="row">
+
             <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
+            <div class="col-lg-6 col-sm-6">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Sampling Hours</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Pre-breakfast, Sampling By Value</h6>
                   <!-- <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">
@@ -265,67 +258,43 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2">
-                    <canvas id="pieChart"></canvas>
-                  </div>
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Mornings
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> By Noon
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Evenings
-                    </span>
+                  <div class="chart-pie mb-4">
+                    <canvas id="chartPie"></canvas>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- Content Row -->
-          <div class="row">
 
             <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-
+            <div class="col-lg-6 col-sm-6">
               <!-- Project Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Average Coparison</h6>
                 </div>
                 <div class="card-body">
-                  <h4 class="small font-weight-bold">Lows <span class="float-right">20%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20"
-                      aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="chart-pie mb-4">
+                    <canvas id="chartHorizontalBar"></canvas>
                   </div>
-
-                  <h4 class="small font-weight-bold">Right <span class="float-right">40%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="40"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-
-                  <h4 class="small font-weight-bold">Litle Over <span class="float-right">35%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 35%" aria-valuenow="60"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-
-                  <h4 class="small font-weight-bold">Over <span class="float-right">23%</span></h4>
-                  <div class="progress">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20"
-                      aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-primary"></i> Low
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-success"></i> Normal
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-warning"></i> High
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-danger"></i> Too High
+                    </span>
                   </div>
                 </div>
               </div>
-
             </div>
 
           </div>
-
         </div>
         <!-- /.container-fluid -->
 
@@ -352,6 +321,25 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Bootstrap core JavaScript -->
@@ -360,7 +348,8 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="vendor/chart.js/Chart.min.js"></script>
-  <script src="scripts/chart-area.js"></script>
+  <script src="scripts/date-fns.js"></script>
+  <script src="scripts/chart-line.js"></script>
   <script src="scripts/chart-pie.js"></script>
   <script src="scripts/scripts.js"></script>
   <!-- endbuild -->
