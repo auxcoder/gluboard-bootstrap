@@ -46,6 +46,10 @@
     e.preventDefault();
   });
 
+  $('#printDoc').on('click', function() {
+    window.print();
+  });
+
   // load samples dataset
   $(document).ready(function() {
     $.getJSON( "codes.json", function( data ) {
