@@ -50,6 +50,14 @@
     window.print();
   });
 
+  $('.nav-link').on('click', function(event) {
+    let target = event.target.parentNode;
+    if (target.id === 'lastMonth') dispatchEvent(target.id);
+    if (target.id === 'lastTwoMonths') dispatchEvent(target.id);
+    if (target.id === 'lastThreeMonths') dispatchEvent(target.id);
+    if (target.id === 'lastSixMonths') dispatchEvent(target.id);
+  });
+
   // load samples dataset
   $(document).ready(function() {
     $.getJSON( "codes.json", function( data ) {
@@ -143,4 +151,12 @@
     var lastMonthAverage = getAverage(closestSamples.map(function(sample) {return sample.value}))
     $("#lastMonthAve .value").html(lastMonthAverage);
   }
+
+  function dispatchEvent(targetId) {
+    document.dispatchEvent(new CustomEvent('update-data', {
+      detail: { name: targetId }
+    }));
+  }
+
+  window.lastDayOfSample = lastDayOfSample;
 })(jQuery); // End of use strict

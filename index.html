@@ -53,24 +53,24 @@
 
       <!-- Intervls - Dates -->
       <li class="nav-item">
-        <a class="nav-link" href="#lastMonth">
+        <a class="nav-link" type="button" id="lastMonth">
           <i class="fas fa-fw fa-calendar"></i>
-          <span>Last month</span></a>
+          <span>Last Month</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#lastWeek">
+        <a class="nav-link" type="button" id="lastTwoMonths">
           <i class="fas fa-fw fa-calendar"></i>
-          <span>Last week</span></a>
+          <span>Last Two Months</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#lastThreeDays">
+        <a class="nav-link" type="button" id="lastThreeMonths">
           <i class="fas fa-fw fa-calendar"></i>
-          <span>Last three days</span></a>
+          <span>Last Three Months</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#lastThreeMonths">
+        <a class="nav-link" type="button" id="lastSixMonths">
           <i class="fas fa-fw fa-calendar"></i>
-          <span>Last three months</span></a>
+          <span>Last Six Months</span></a>
       </li>
 
       <!-- Divider -->
@@ -99,11 +99,11 @@
                 <form id="login">
                   <div class="form-group">
                     <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                      aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      aria-describedby="emailHelp" placeholder="Enter Email Address..." autocomplete="username">
                   </div>
                   <div class="form-group">
                     <input type="password" class="form-control form-control-user" id="exampleInputPassword"
-                      placeholder="Password">
+                      placeholder="Password" autocomplete="current-password">
                   </div>
 
                   <div class="form-group form-check">
@@ -114,7 +114,9 @@
                   <a href="index.html" class="btn btn-primary btn-user btn-block">
                     Login
                   </a>
+
                   <hr>
+
                   <a href="index.html" class="btn btn-google btn-user btn-block">
                     <i class="fab fa-google fa-fw"></i> Login with Google
                   </a>
@@ -394,7 +396,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <button class="btn btn-primary" type="button" id="logout">Logout</button>
         </div>
       </div>
     </div>
