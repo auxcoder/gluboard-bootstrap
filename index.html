@@ -53,12 +53,12 @@
 
       <!-- Intervls - Dates -->
       <li class="nav-item">
-        <a class="nav-link" type="button" id="#lastMonth">
+        <a class="nav-link" type="button" id="lastMonth">
           <i class="fas fa-fw fa-calendar"></i>
           <span>Last Month</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" type="button" id="#lastTwoMonths">
+        <a class="nav-link" type="button" id="lastTwoMonths">
           <i class="fas fa-fw fa-calendar"></i>
           <span>Last Two Months</span></a>
       </li>
@@ -99,11 +99,11 @@
                 <form id="login">
                   <div class="form-group">
                     <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                      aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      aria-describedby="emailHelp" placeholder="Enter Email Address..." autocomplete="username">
                   </div>
                   <div class="form-group">
                     <input type="password" class="form-control form-control-user" id="exampleInputPassword"
-                      placeholder="Password">
+                      placeholder="Password" autocomplete="current-password">
                   </div>
 
                   <div class="form-group form-check">
@@ -114,7 +114,9 @@
                   <a href="index.html" class="btn btn-primary btn-user btn-block">
                     Login
                   </a>
+
                   <hr>
+
                   <a href="index.html" class="btn btn-google btn-user btn-block">
                     <i class="fab fa-google fa-fw"></i> Login with Google
                   </a>
