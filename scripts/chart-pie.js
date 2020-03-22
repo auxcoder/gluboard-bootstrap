@@ -9,9 +9,24 @@ var chartPieConfig = {
     labels: ["Direct", "Referral", "Social"],
     datasets: [{
       data: [55, 30, 15],
-      backgroundColor: ['#4e73df', '#1cc88a', '#f6c23e',  '#e74a3b'],
-      hoverBackgroundColor: ['#2e59d9', '#159667', '#daad3b', '#bf3d31'],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
+      backgroundColor: [
+        'rgba(78, 115, 223, 0.2)',
+        'rgba(28, 200, 138, 0.2)',
+        "rgba(246, 194, 62, 0.2)",
+        'rgba(231, 74, 59, 0.2)'
+      ],
+      hoverBackgroundColor: [
+        'rgba(78, 115, 223, 0.5)',
+        'rgba(28, 200, 138, 0.5)',
+        "rgba(246, 194, 62, 0.5)",
+        'rgba(231, 74, 59, 0.5)'
+      ],
+      borderColor: [
+        'rgb(78, 115, 223)',
+        'rgb(28, 200, 138)',
+        "rgb(246, 194, 62)",
+        'rgb(231, 74, 59)'
+      ],
     }],
   },
   options: {
