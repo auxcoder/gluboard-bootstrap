@@ -13,19 +13,15 @@
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- build:css css/main.css-->
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <!-- endbuild -->
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
 </head>
 
 <body id="page-top">
@@ -88,6 +84,61 @@
     </ul>
     <!-- End of Sidebar -->
 
+    <!-- Login Modal -->
+    <div class="modal fade" role="dialog" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content justify-content-center">
+          <div class="card o-hidden border-0 shadow-lg">
+            <div class="card-body p-0">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                </div>
+
+                <form id="login">
+                  <div class="form-group">
+                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                      aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control form-control-user" id="exampleInputPassword"
+                      placeholder="Password">
+                  </div>
+
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  </div>
+
+                  <a href="index.html" class="btn btn-primary btn-user btn-block">
+                    Login
+                  </a>
+                  <hr>
+                  <a href="index.html" class="btn btn-google btn-user btn-block">
+                    <i class="fab fa-google fa-fw"></i> Login with Google
+                  </a>
+                  <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                    <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                  </a>
+                </form>
+
+                <hr>
+
+                <div class="text-center">
+                  <a href="forgot-password.html">Forgot Password?</a>
+                </div>
+                <div class="text-center">
+                  <a href="register.html">Create an Account!</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Login Modal -->
+
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -106,7 +157,13 @@
           <ul class="navbar-nav ml-auto">
             <div class="topbar-divider d-none d-sm-block"></div>
 
-
+            <!-- Nav Item - User Login -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link" href="login.html" id="openLogin" role="button" aria-haspopup="true"
+                aria-expanded="false" data-toggle="modal" data-target="#loginModal">
+                Login <i class="fas fa-user fa-sm fa-fw ml-2"></i>
+              </a>
+            </li>
           </ul>
 
         </nav>
@@ -273,7 +330,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Average Coparison</h6>
                 </div>
                 <div class="card-body">
-                  <div class="chart-pie mb-4">
+                  <div class="chart-bar mb-4">
                     <canvas id="chartHorizontalBar"></canvas>
                   </div>
                   <div class="mt-4 text-center small">
@@ -351,6 +408,7 @@
   <script src="scripts/date-fns.js"></script>
   <script src="scripts/chart-line.js"></script>
   <script src="scripts/chart-pie.js"></script>
+  <script src="scripts/horizontal-bar.js"></script>
   <script src="scripts/scripts.js"></script>
   <!-- endbuild -->
 </body>

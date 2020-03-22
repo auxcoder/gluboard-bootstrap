@@ -38,6 +38,9 @@ var barConfig = {
           }
         }
       ]
+    },
+    tooltips: {
+      displayColors: false,
     }
   }
 };
