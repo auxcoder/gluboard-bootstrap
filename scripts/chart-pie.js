@@ -10,16 +10,16 @@ var chartPieConfig = {
     datasets: [{
       data: [55, 30, 15],
       backgroundColor: [
-        'rgba(78, 115, 223, 0.2)',
+        'rgb(78, 115, 223)',
+        'rgb(28, 200, 138)',
+        "rgb(246, 194, 62)",
+        'rgb(231, 74, 59)'
+      ],
+      hoverBackgroundColor: [
+        'rgb(78, 115, 223, 0.2)',
         'rgba(28, 200, 138, 0.2)',
         "rgba(246, 194, 62, 0.2)",
         'rgba(231, 74, 59, 0.2)'
-      ],
-      hoverBackgroundColor: [
-        'rgba(78, 115, 223, 0.5)',
-        'rgba(28, 200, 138, 0.5)',
-        "rgba(246, 194, 62, 0.5)",
-        'rgba(231, 74, 59, 0.5)'
       ],
       borderColor: [
         'rgb(78, 115, 223)',
