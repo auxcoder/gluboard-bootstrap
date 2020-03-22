@@ -153,8 +153,10 @@
   }
 
   function dispatchEvent(targetId) {
-    document.dispatchEvent(new CustomEvent("update-data", {
+    document.dispatchEvent(new CustomEvent('update-data', {
       detail: { name: targetId }
     }));
   }
+
+  window.lastDayOfSample = lastDayOfSample;
 })(jQuery); // End of use strict
