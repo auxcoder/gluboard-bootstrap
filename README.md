@@ -52,17 +52,3 @@ After installation, run `npm install` and then run `npm start` which will open u
 - 72 = Unspecified special event
 
 \*Neutral Protamine Hagedorn, intermediate acting insulins are often taken in conjunction with a short acting insulin. Intermediate acting insulins start to act within the first hour of injecting, followed by a period of peak activity lasting up to 7 hours.
-
----
-
-## Copyright and License
-
-Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-resume/blob/gh-pages/LICENSE) license.
-
----
-
-## Refs
-
-- [Dashboard One](https://www.bootstrapdash.com/demo/azia/v1.0.0/template/dashboard-one.html)
-- [Keen](https://themes.getbootstrap.com/product/keen-the-ultimate-bootstrap-admin-theme/)
-- [Keen demo1](https://keenthemes.com/keen/preview/demo1/dashboards/navy-header.html)

@@ -45,6 +45,18 @@ function browserSync(done) {
   done();
 }
 
+function browserSyncDist(done) {
+  browsersync.init({
+    server: {
+      baseDir: `./dist/`
+    },
+    files: ["./dist/**/*.{html,htm,css,js}"],
+    port: 3000
+  });
+  done();
+}
+
+
 // BrowserSync reload
 function browserSyncReload(done) {
   browsersync.reload();
@@ -75,13 +87,6 @@ function modules() {
   // ChartJS
   var chartJS = gulp.src('./node_modules/chart.js/dist/*.js')
     .pipe(gulp.dest(`./vendor/chart.js`));
-  // dataTables
-  var dataTables = gulp.src([
-      './node_modules/datatables.net/js/*.js',
-      './node_modules/datatables.net-bs4/js/*.js',
-      './node_modules/datatables.net-bs4/css/*.css'
-    ])
-    .pipe(gulp.dest(`./vendor/datatables`));
   // Font Awesome
   var fontAwesome = gulp.src('./node_modules/@fortawesome/**/*')
     .pipe(gulp.dest(`./vendor`));
@@ -94,7 +99,7 @@ function modules() {
       '!./node_modules/jquery/dist/core.js'
     ])
     .pipe(gulp.dest(`./vendor/jquery`));
-  return merge(bootstrapJS, bootstrapSCSS, chartJS, dataTables, fontAwesome, jquery, jqueryEasing);
+  return merge(bootstrapJS, bootstrapSCSS, chartJS, fontAwesome, jquery, jqueryEasing);
 }
 
 // CSS task
@@ -177,3 +182,4 @@ exports.scripts = gulp.series(delJs, js);
 exports.styles = gulp.series(delCss, css);
 exports.build = build;
 exports.default = watch;
+exports.serveDist = gulp.series(build, browserSyncDist);

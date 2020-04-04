@@ -60,6 +60,8 @@
 
   // load samples dataset
   $(document).ready(function() {
+    $('#year').html(new Date().getFullYear());
+
     $.getJSON( "codes.json", function( data ) {
       window.sampleCodes = data;
     });
